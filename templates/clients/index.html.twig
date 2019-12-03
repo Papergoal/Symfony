@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <h1>Homepage</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.Societe }}</td>
+                <td>{{ client.Nom }}</td>
+                <td>{{ client.Prenom }}</td>
+                <td>{{ client.Email }}</td>
+                <td>{{ client.IBAN }}</td>
+                <td>
+                    <a href="{{ path("modifier_clients", {'id':client.id}) }}"
+                       class="btn btn-primary">Modifier</a>
+                </td>
+                <td>
+                    <a href="{{ path("supprimmer_clients", {'id':client.id}) }}"
+                       class="btn btn-primary">Supprimmer</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <h1>Gestion des clients :</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Société</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>IBAN</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for client in clients %}
+            <tr>
+                <td>{{ client.Societe }}</td>
+                <td>{{ client.Nom }}</td>
+                <td>{{ client.Prenom }}</td>
+                <td>{{ client.Email }}</td>
+                <td>{{ client.IBAN }}</td>
+                <td>
+                    <a href="{{ path("modifier_clients", {'id':client.id}) }}"
+                       class="btn btn-primary">Modifier</a>
+                </td>
+                <td>
+                    <a href="{{ path("supprimer_clients", {'id':client.id}) }}"
+                       class="btn btn-primary">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+            </tbody>
+        </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form method="POST" action="/clients/ajouter">
+        <input value="ajouter un client" name="ajouter un client" type="submit">
+    </form>
+
+{% endblock %}
